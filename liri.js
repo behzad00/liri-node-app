@@ -72,7 +72,8 @@ function movie() {
 
 	console.log(movieName);
 	 if(!movieName) {
-	 	movieName = "Mr. Nobody"
+	 	console.log("Mr. Nobody")
+	 	movieName = "Mr+.+Nobody";
 	 }
 
     request("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&r=json", function(error, response, body) {
