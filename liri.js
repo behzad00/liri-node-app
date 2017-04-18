@@ -18,12 +18,38 @@ var songName = "";
 
 console.log(options);
 
-if (options === "my-tweets") {
+  switch (options) {
+
+	case "my-tweets":
+	twitter();
+	break;
+
+	case "movie-this":
+    movie();
+    break;
+
+    case "spotify-this-song":
+    song();
+    break;
+
+    case "do-what-it-says":
+    doWhatItSays();
+    break;
+
+}
+
+
+// if (options === "my-tweets") 
+function twitter() {
 
     var params = { screen_name: 'bzadp' };
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (!error) {
-            console.log(tweets);
+
+        	for ( var i=0 ; i<20 ; i++){
+        			console.log(tweets[i].text);
+        	}
+            
         }
        // console.log(tweets.text);
     });
@@ -31,17 +57,20 @@ if (options === "my-tweets") {
 }
 
 
-if (options == "movie-this") {
+// if (options == "movie-this")
+function movie() {
 
 	for ( var i=3 ; i<nodeArgs.length ; i++){
 
 		if (i>3 && i< nodeArgs.length){
 			movieName = movieName + "+" +nodeArgs[i];
-
-
+		}
+		else{
+			movieName+= nodeArgs[i];
 		}
 	}    
 
+	console.log(movieName);
 	 if(!movieName) {
 	 	movieName = "Mr. Nobody"
 	 }
@@ -74,12 +103,17 @@ if (options == "movie-this") {
 
 
 
-if (options === "spotify-this-song") {
+// if (options === "spotify-this-song") 
 
-	for ( var i=3 ; i<nodeArgs.length ; i++){
+function song() {
+
+
+
+
+	for ( var i=2 ; i< nodeArgs.length ; i++){
 		
-		if (i>3 && i< nodeArgs.length){
-			songName = songName + "+" +nodeArgs[i];
+		if (i>2 && i< nodeArgs.length){
+			songName = songName + " " +nodeArgs[i];
 
 
 		}
@@ -88,7 +122,7 @@ if (options === "spotify-this-song") {
 	if (!songName){
 		songName = "The Sign";
 	}
-
+	
 	console.log(songName);
     
 
@@ -105,12 +139,15 @@ if (options === "spotify-this-song") {
 
 }
 
-if (options === "do-what-it-says") {
+// if (options === "do-what-it-says") 
+function doWhatItSays () {
 
 
 	fs.readFile("random.txt" , "utf8" , function(err , data) {
 		data = data.split(" ,")
 		options = data[0];
 		songName = data[1];
+		
+		song()
 	});
 }
