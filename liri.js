@@ -87,13 +87,7 @@ function movie() {
             console.log("Plot: " + JSON.parse(body).plot);
             console.log("Actors: " + JSON.parse(body).actors);
 
-            	if(!movieName) {
-
-
-
-
-            	}
-
+            
 
         }
 
