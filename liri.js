@@ -18,29 +18,28 @@ var songName = "";
 
 console.log(options);
 
-  switch (options) {
+switch (options) {
 
-	case "my-tweets":
-	twitter();
+case "my-tweets":
+	getTweets()
 	break;
 
-	case "movie-this":
-    movie();
+case "movie-this":
+    movie()
     break;
 
-    case "spotify-this-song":
-    song();
+case "spotify-this-song":
+    song()
     break;
 
-    case "do-what-it-says":
-    doWhatItSays();
+case "do-what-it-says":
+    doWhatItSays()
     break;
-
 }
 
 
 // if (options === "my-tweets") 
-function twitter() {
+function getTweets() {
 
     var params = { screen_name: 'bzadp' };
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
@@ -76,7 +75,7 @@ function movie() {
 	 	movieName = "Mr+.+Nobody";
 	 }
 
-    request("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&r=json", function(error, response, body) {
+    request("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&r=json&tomatoes=true", function(error, response, body) {
 
         if (!error && response.statuscode === 200) {
 
